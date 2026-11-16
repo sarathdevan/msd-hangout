@@ -1,0 +1,574 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSD HANGOUT</title>
+<meta name="theme-color" content="#111a2d">
+<meta name="description" content="Plan, play and explore with your friends.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1020;color:#f5f7fb;font-family:Arial,sans-serif}
+header{text-align:center;padding:25px 15px;background:#111a2d;border-bottom:1px solid #2b3855}
+header h1{font-size:36px;letter-spacing:3px;margin:0}
+header p{color:#aab5cc}
+.install{margin:12px auto;padding:13px 22px;background:#7cdbb5;color:#082018;border:0;border-radius:30px;font-weight:bold;cursor:pointer;font-size:15px}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:18px}
+button{border:0;padding:11px 16px;border-radius:9px;background:#7cdbb5;color:#082018;font-weight:bold;cursor:pointer}
+nav button{background:#273653;color:white}
+nav button.active{background:#7cdbb5;color:#082018}
+main{max-width:950px;margin:auto;padding:18px}
+.panel{background:#151d33;border:1px solid #2b3855;border-radius:15px;padding:18px;margin-bottom:16px}
+h2{color:#7cdbb5;margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+label{display:block;color:#aab5cc;font-size:13px;margin-bottom:5px}
+input,select,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid #2b3855;background:#0e1628;color:white}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.secondary{background:#2b3855;color:white}
+.danger{background:#873b4b;color:white}
+.item{background:#10192b;border:1px solid #2b3855;padding:13px;border-radius:10px;margin-top:10px}
+.muted{color:#aab5cc;font-size:13px}
+.tab{display:none}
+.tab.active{display:block}
+.bar{height:8px;background:#2b3855;border-radius:10px;margin-top:5px;overflow:hidden}
+.bar span{display:block;height:100%;background:#7cdbb5}
+footer{text-align:center;padding:25px;color:#aab5cc}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>MSD HANGOUT</h1>
+<p>PLAN • PLAY • EXPLORE</p>
+<p>Make every holiday memorable!</p>
+
+<button class="install" id="installBtn">
+⬇ INSTALL MSD HANGOUT
+</button>
+
+<nav>
+<button class="active" onclick="showTab('plans',this)">Plans</button>
+<button onclick="showTab('friends',this)">Friends</button>
+<button onclick="showTab('polls',this)">Voting</button>
+<button onclick="showTab('budget',this)">Budget</button>
+</nav>
+</header>
+
+<main>
+
+<!-- PLANS -->
+
+<section id="plans" class="tab active">
+
+<div class="panel">
+<h2>🗓 Create a weekend plan</h2>
+
+<div class="grid">
+
+<div>
+<label>Plan name</label>
+<input id="pname" placeholder="Sunday hangout">
+</div>
+
+<div>
+<label>Date</label>
+<input id="pdate" type="date">
+</div>
+
+<div>
+<label>Meet-up time</label>
+<input id="meet" type="time" value="09:00">
+</div>
+
+<div>
+<label>Return time</label>
+<input id="ret" type="time" value="18:00">
+</div>
+
+<div>
+<label>Activity</label>
+<select id="activity">
+<option>Cricket</option>
+<option>Football</option>
+<option>Badminton</option>
+<option>Volleyball</option>
+<option>Indoor games</option>
+<option>Bike ride</option>
+<option>Car ride</option>
+<option>Shopping</option>
+<option>Just hang out</option>
+</select>
+</div>
+
+<div>
+<label>Choose a Valparai shop</label>
+<select id="place">
+
+<optgroup label="🥐 Bakeries">
+<option>Bharath Bakery</option>
+<option>MRS Bakery</option>
+<option>Top Touch Bakery</option>
+<option>Cakes Corner</option>
+<option>Surya Iyengar Bakery</option>
+<option>Krishna Bakery</option>
+<option>Ravi Bakery</option>
+<option>Plaza Bakery & Restaurant</option>
+<option>Tasty Park Bakery</option>
+<option>Noor Bakes</option>
+<option>Baek Hub</option>
+<option>Nellai Iyyannar Sweet Stall</option>
+<option>Hasana Bakery</option>
+</optgroup>
+
+<optgroup label="🍔 Fast Food & Restaurants">
+<option>Adith Fast Food Shop</option>
+<option>Green Hills Restaurant</option>
+<option>Mary Matha Mess</option>
+<option>Ambigai Chettinad Mess</option>
+<option>Lakshmi Chettinad Mess</option>
+<option>Iyappa Restaurant</option>
+<option>MRK Mess</option>
+<option>Sabari Mess</option>
+<option>Shanthi Mess</option>
+<option>Plaza Restaurant</option>
+<option>Baek Hub - Burgers & Pizza</option>
+<option>Tasty Park Restaurant</option>
+</optgroup>
+
+<optgroup label="☕ Tea Shops & Cafés">
+<option>Nadumalai Tea Shop</option>
+<option>Friendz Cafe</option>
+<option>Bharath Coffee</option>
+<option>TMD Tea & Agencies</option>
+<option>Briar Tea House</option>
+<option>Swamy's Tea Stall</option>
+<option>Tea Shop Puthuthottam</option>
+<option>Parry's Corner</option>
+<option>ASR Tea</option>
+<option>John Tea Traders</option>
+<option>Nice Time Tea Traders</option>
+<option>Priyadharshini Tea Traders</option>
+<option>Tea Shop - Ayyanar Tea Stall</option>
+<option>Tea Shop - NKM Tea & Sweet Stall</option>
+<option>Tea Shop - Friendship Tea Stall</option>
+</optgroup>
+
+<optgroup label="🛒 Departmental & General Stores">
+<option>Kumaran Departmental Store</option>
+<option>Ravi Stores</option>
+<option>Mani Store</option>
+<option>Sri Murugan Store</option>
+<option>KDJ Stores</option>
+</optgroup>
+
+<option>Other / Not decided</option>
+
+</select>
+</div>
+
+<div>
+<label>Additional food stop</label>
+<input id="cafe" placeholder="Another shop or restaurant">
+</div>
+
+<div>
+<label>Extra notes</label>
+<input id="notes" placeholder="Additional details">
+</div>
+
+</div>
+
+<div class="actions">
+<button onclick="addPlan()">Save plan</button>
+</div>
+</div>
+
+<div class="panel">
+<h2>📅 Weekend plans</h2>
+<div id="planList">No plans yet.</div>
+</div>
+
+</section>
+
+
+<!-- FRIENDS -->
+
+<section id="friends" class="tab">
+<div class="panel">
+<h2>👥 Your friend group</h2>
+
+<label>Friend's name</label>
+<input id="friendName" placeholder="Enter friend's name">
+
+<div class="actions">
+<button onclick="addFriend()">Add friend</button>
+</div>
+
+<div id="friendList"></div>
+</div>
+</section>
+
+
+<!-- VOTING -->
+
+<section id="polls" class="tab">
+<div class="panel">
+<h2>🗳 Group voting</h2>
+
+<label>What are we deciding?</label>
+<input id="question" placeholder="Which shop should we visit?">
+
+<br><br>
+
+<label>Voting options (separate with commas)</label>
+<input id="options" placeholder="Kumaran Store, Adith Fast Food, Noor Bakes">
+
+<div class="actions">
+<button onclick="addPoll()">Create poll</button>
+</div>
+
+<div id="pollList"></div>
+
+<p class="muted">
+The option with the most votes becomes the majority choice.
+Ties need a tie-break vote.
+</p>
+</div>
+</section>
+
+
+<!-- BUDGET -->
+
+<section id="budget" class="tab">
+<div class="panel">
+<h2>💰 Budget calculator</h2>
+
+<div class="grid">
+
+<div>
+<label>Shared transport cost (₹)</label>
+<input id="transport" type="number" min="0" value="0">
+</div>
+
+<div>
+<label>Food per person (₹)</label>
+<input id="food" type="number" min="0" value="200">
+</div>
+
+<div>
+<label>Entry/activity per person (₹)</label>
+<input id="entry" type="number" min="0" value="0">
+</div>
+
+<div>
+<label>Extra buffer per person (₹)</label>
+<input id="buffer" type="number" min="0" value="100">
+</div>
+
+</div>
+
+<div class="actions">
+<button onclick="calculate()">Calculate</button>
+</div>
+
+<div id="budgetResult" class="item">
+Your budget will appear here.
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<b>MSD HANGOUT</b>
+<p>PLAN • PLAY • EXPLORE</p>
+<p>Made for unforgettable weekends.</p>
+</footer>
+
+<script>
+
+let data={plans:[],friends:[],polls:[]};
+
+try{
+const saved=localStorage.getItem("msd_hangout");
+if(saved){
+const parsed=JSON.parse(saved);
+if(parsed && Array.isArray(parsed.plans) &&
+Array.isArray(parsed.friends) &&
+Array.isArray(parsed.polls)){
+data=parsed;
+}
+}
+}catch(e){}
+
+function el(id){
+return document.getElementById(id);
+}
+
+function save(){
+localStorage.setItem("msd_hangout",JSON.stringify(data));
+render();
+}
+
+function safe(s){
+return String(s??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",
+'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function showTab(id,button){
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+el(id).classList.add("active");
+button.classList.add("active");
+}
+
+function addPlan(){
+const name=el("pname").value.trim();
+const date=el("pdate").value;
+
+if(!name||!date){
+alert("Please enter a plan name and date.");
+return;
+}
+
+data.plans.unshift({
+name,date,
+meet:el("meet").value,
+ret:el("ret").value,
+activity:el("activity").value,
+place:el("place").value,
+cafe:el("cafe").value,
+notes:el("notes").value
+});
+
+save();
+el("pname").value="";
+el("cafe").value="";
+el("notes").value="";
+}
+
+function addFriend(){
+const name=el("friendName").value.trim();
+
+if(!name){
+alert("Enter a friend's name.");
+return;
+}
+
+if(data.friends.some(f=>f.name.toLowerCase()===name.toLowerCase())){
+alert("This friend is already added.");
+return;
+}
+
+data.friends.push({name,coming:true});
+el("friendName").value="";
+save();
+}
+
+function addPoll(){
+const q=el("question").value.trim();
+const opts=el("options").value.split(",").map(x=>x.trim()).filter(Boolean);
+
+if(!q||opts.length<2){
+alert("Enter a question and at least two options.");
+return;
+}
+
+if(new Set(opts.map(x=>x.toLowerCase())).size!==opts.length){
+alert("Remove duplicate options.");
+return;
+}
+
+data.polls.unshift({q,opts,votes:{},closed:false});
+el("question").value="";
+el("options").value="";
+save();
+}
+
+function vote(i){
+const p=data.polls[i];
+const name=el("voter"+i).value;
+const choice=el("choice"+i).value;
+
+if(!name){
+alert("Choose your name.");
+return;
+}
+
+if(p.votes[name]){
+alert("This friend has already voted.");
+return;
+}
+
+p.votes[name]=choice;
+save();
+}
+
+function toggleFriend(i){
+data.friends[i].coming=!data.friends[i].coming;
+save();
+}
+
+function removeFriend(i){
+const name=data.friends[i].name;
+data.friends.splice(i,1);
+data.polls.forEach(p=>delete p.votes[name]);
+save();
+}
+
+function deletePlan(i){
+data.plans.splice(i,1);
+save();
+}
+
+function closePoll(i){
+data.polls[i].closed=true;
+save();
+}
+
+function calculate(){
+const count=data.friends.filter(f=>f.coming).length;
+
+if(!count){
+el("budgetResult").textContent="Add friends and mark who is coming first.";
+return;
+}
+
+const total=
+Number(el("transport").value||0)/count+
+Number(el("food").value||0)+
+Number(el("entry").value||0)+
+Number(el("buffer").value||0);
+
+const amount=Math.ceil(total/50)*50;
+
+el("budgetResult").innerHTML=
+"<b>Suggested amount per person: ₹"+
+amount.toLocaleString("en-IN")+
+"</b><br><span class='muted'>Based on "+
+count+" confirmed friends.</span>";
+}
+
+function render(){
+
+el("planList").innerHTML=data.plans.length
+?data.plans.map((p,i)=>`
+<div class="item">
+<b>${safe(p.name)}</b> · ${safe(p.date)}
+<p class="muted">${safe(p.meet)} to ${safe(p.ret)} · ${safe(p.activity)}</p>
+<p><b>Shop:</b> ${safe(p.place)}</p>
+<p class="muted">${safe(p.cafe)} ${safe(p.notes)}</p>
+<button class="danger" onclick="deletePlan(${i})">Delete</button>
+</div>
+`).join("")
+:"No plans yet. Create your first weekend plan!";
+
+el("friendList").innerHTML=data.friends.length
+?data.friends.map((f,i)=>`
+<div class="item">
+<b>${safe(f.name)}</b> · ${f.coming?"Coming":"Not confirmed"}
+<div class="actions">
+<button class="secondary" onclick="toggleFriend(${i})">Toggle attendance</button>
+<button class="danger" onclick="removeFriend(${i})">Remove</button>
+</div>
+</div>
+`).join("")
+:"No friends added yet.";
+
+el("pollList").innerHTML=data.polls.length
+?data.polls.map((p,i)=>{
+
+const counts=p.opts.map(o=>Object.values(p.votes).filter(v=>v===o).length);
+const max=Math.max(0,...counts);
+const winners=p.opts.filter((o,j)=>counts[j]===max&&max>0);
+const total=Object.keys(p.votes).length;
+
+return `
+<div class="item">
+<b>${safe(p.q)}</b>
+
+${p.opts.map((o,j)=>`
+<p>${safe(o)} — ${counts[j]} vote(s)</p>
+<div class="bar">
+<span style="width:${total?counts[j]/total*100:0}%"></span>
+</div>
+`).join("")}
+
+<p class="muted">
+${max===0?"Waiting for votes":
+winners.length>1?"Tie — tie-break needed":
+"Majority leader: "+safe(winners[0])}
+</p>
+
+${p.closed?"<b>Poll closed</b>":`
+<label>Choose your name</label>
+<select id="voter${i}">
+<option value="">Select friend</option>
+${data.friends.map(f=>`<option>${safe(f.name)}</option>`).join("")}
+</select>
+
+<label>Choose your vote</label>
+<select id="choice${i}">
+${p.opts.map(o=>`<option>${safe(o)}</option>`).join("")}
+</select>
+
+<div class="actions">
+<button onclick="vote(${i})">Submit vote</button>
+<button class="secondary" onclick="closePoll(${i})">Close poll</button>
+</div>
+`}
+</div>
+`;
+}).join("")
+:"No polls created yet.";
+
+}
+
+render();
+
+
+// APP INSTALLATION
+
+let installPrompt=null;
+const installBtn=el("installBtn");
+
+window.addEventListener("beforeinstallprompt",event=>{
+event.preventDefault();
+installPrompt=event;
+installBtn.style.display="block";
+});
+
+installBtn.addEventListener("click",async()=>{
+if(installPrompt){
+installPrompt.prompt();
+const result=await installPrompt.userChoice;
+if(result.outcome==="accepted"){
+installBtn.textContent="✓ APP INSTALL REQUESTED";
+}
+installPrompt=null;
+}else{
+alert(
+"To install MSD HANGOUT:\n\n"+
+"ANDROID: Open Chrome menu (⋮) and choose Install app or Add to Home screen.\n\n"+
+"IPHONE: Open in Safari, tap Share, then Add to Home Screen."
+);
+}
+});
+
+if("serviceWorker" in navigator){
+window.addEventListener("load",()=>{
+navigator.serviceWorker.register("./sw.js")
+.catch(error=>console.log("Service worker registration failed:",error));
+});
+}
+
+</script>
+</body>
+</html>
