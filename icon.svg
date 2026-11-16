@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111c35"/>
+      <stop offset="100%" stop-color="#050914"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#42f5c5"/>
+      <stop offset="50%" stop-color="#36aaff"/>
+      <stop offset="100%" stop-color="#8665ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="110" fill="url(#background)"/>
+
+  <circle cx="256" cy="220" r="160"
+          fill="none" stroke="#263b59" stroke-width="3"/>
+
+  <path d="M110 295 V145 L205 245 L256 185 L307 245 L402 145 V295"
+        fill="none"
+        stroke="url(#accent)"
+        stroke-width="25"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <text x="256" y="370"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="52"
+        font-weight="900"
+        letter-spacing="5"
+        fill="#ffffff">MSD</text>
+
+  <text x="256" y="414"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="21"
+        font-weight="bold"
+        letter-spacing="7"
+        fill="#42e8c5">HANGOUT</text>
+
+  <rect x="190" y="445" width="132" height="5"
+        rx="3" fill="url(#accent)"/>
+</svg>
